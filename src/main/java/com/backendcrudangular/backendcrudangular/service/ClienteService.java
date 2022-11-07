@@ -12,36 +12,36 @@ import com.backendcrudangular.backendcrudangular.repository.ClienteRepository;
 @Service
 public class ClienteService {
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
 
-    public List<Cliente> listarTodos() {
+	public List<Cliente> listarTodos() {
 
-        return clienteRepository.findAll();
+		return clienteRepository.findAll();
 
-    }
+	}
 
-    public Optional<Cliente> listarPorId(Long id) {
+	public Optional<Cliente> listarPorId(Long id) {
 
-        return clienteRepository.findById(id);
+		return clienteRepository.findById(id);
 
-    }
+	}
 
-    public Cliente salvar(Cliente cliente) {
+	public Cliente salvar(Cliente cliente) {
 
-        return clienteRepository.save(cliente);
+		return clienteRepository.save(cliente);
 
-    }
+	}
 
-    public void deletar(Long id) {
-        clienteRepository.deleteById(id);
-    }
+	public void deletar(Long id) {
+		clienteRepository.deleteById(id);
+	}
 
-    public Cliente alterar(Long id, Cliente cliente) {
+	public Cliente alterar(Long id, Cliente cliente) {
 
-        cliente.setId(id);
-        return clienteRepository.save(cliente);
+		cliente.setId(id);
+		return clienteRepository.save(cliente);
 
-    }
+	}
 
 }

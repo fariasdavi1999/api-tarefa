@@ -1,5 +1,8 @@
 package com.backendcrudangular.backendcrudangular.model;
 
+import java.sql.Date;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,53 +10,73 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "nome_cliente")
-    private String nomeCliente;
+	@Column(name = "nome_cliente")
+	private String nomeCliente;
 
-    @Column(name = "cpf_cliente")
-    private String cpfCliente;
+	@Column(name = "cpf_cliente", nullable = false)
+	private String cpfCliente;
 
-    @Column(name = "data_nasc")
-    private String dataNasc;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "data_nasc")
+	private Date dataNasc;
 
-    public Long getId() {
-        return Id;
-    }
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
 
-    public void setId(Long id) {
-        Id = id;
-    }
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
+	public String getCpfCliente() {
+		return cpfCliente;
+	}
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
+	public void setCpfCliente(String cpfCliente) {
+		this.cpfCliente = cpfCliente;
+	}
 
-    public String getCpfCliente() {
-        return cpfCliente;
-    }
+	public Date getDataNasc() {
+		return dataNasc;
+	}
 
-    public void setCpfCliente(String cpfCliente) {
-        this.cpfCliente = cpfCliente;
-    }
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
+	}
 
-    public String getDataNasc() {
-        return dataNasc;
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 
-    public void setDataNasc(String dataNasc) {
-        this.dataNasc = dataNasc;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 }

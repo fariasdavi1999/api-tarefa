@@ -3,7 +3,11 @@ package com.backendcrudangular.backendcrudangular.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backendcrudangular.backendcrudangular.model.Cliente;
@@ -21,42 +26,66 @@ import com.backendcrudangular.backendcrudangular.service.ClienteService;
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
-    @Autowired
-    private ClienteService clienteService;
+	@Autowired
+	private ClienteService clienteService;
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/listar-clientes")
-    public List<Cliente> listarTodos() {
+	@CrossOrigin(origins = "*")
+	@GetMapping("/listar-clientes")
+	public List<Cliente> listarTodos() {
 
-        return clienteService.listarTodos();
+		return clienteService.listarTodos();
 
-    }
+	}
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/{id}")
-    public Optional<Cliente> listarPorId(@PathVariable Long id) {
+	@CrossOrigin(origins = "*")
+	@GetMapping("/{id}")
+	public ResponseEntity<Cliente> listarPorId(@Valid @PathVariable Long id) {
+		Optional<Cliente> usuario = clienteService.listarPorId(id);
+		return ResponseEntity.ok(usuario.get());
+	}
 
-        return clienteService.listarPorId(id);
-    }
+	@CrossOrigin(origins = "*")
+	@PostMapping
+	public Cliente salvar(@Valid @RequestBody Cliente cliente) {
 
-    @CrossOrigin(origins = "*")
-    @PostMapping
-    public Cliente salvar(@RequestBody Cliente cliente) {
+		return clienteService.salvar(cliente);
+	}
 
-        return clienteService.salvar(cliente);
-    }
+	@CrossOrigin(origins = "*")
+	@PutMapping("/{id}")
+	public ResponseEntity<Cliente> alterar(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
 
-    @CrossOrigin(origins = "*")
-    @DeleteMapping("/{id}")
-    public String deletar(@PathVariable Long id) {
-        clienteService.deletar(id);
-        return "Cliente com id: " + id + " Deletado com Sucesso";
-    }
+		Optional<Cliente> clienteSalvo = clienteService.listarPorId(id);
 
-    @CrossOrigin(origins = "*")
-    @PutMapping("/{id}")
-    public Cliente alterar(@RequestBody Cliente cliente, @PathVariable Long id) {
-        return clienteService.alterar(id, cliente);
-    }
+		if (!clienteSalvo.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		clienteSalvo.get().setNomeCliente(cliente.getNomeCliente());
+		Cliente clienteEditar = clienteService.salvar(clienteSalvo.get());
+
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(clienteEditar);
+
+	}
+
+//	public ResponseEntity<Usuario> alterar(@PathVariable Integer id, @Valid @RequestBody Usuario usuario) {
+//
+//		Optional<Usuario> usuarioSalvo = usuarioService.getById(id);
+//
+//		if (!usuarioSalvo.isPresent()) {
+//			return ResponseEntity.notFound().build();
+//		}
+//		usuarioSalvo.get().setNome(usuario.getNome());
+//		Usuario usuarioEditar = usuarioService.PersistirUsuario(usuarioSalvo.get());
+//		return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioEditar);
+//	}
+
+	@CrossOrigin(origins = "*")
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletar(@PathVariable Long id) {
+		clienteService.deletar(id);
+
+	}
 
 }
