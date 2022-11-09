@@ -23,6 +23,9 @@ public class Tarefa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "nome_tarefa", nullable = false)
+	private String nomeTarefa;
+	
 	@Column(name = "tarefa_descricao", nullable = false)
 	private String descricao;
 
@@ -53,6 +56,14 @@ public class Tarefa {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNomeTarefa() {
+		return nomeTarefa;
+	}
+
+	public void setNomeTarefa(String nomeTarefa) {
+		this.nomeTarefa = nomeTarefa;
 	}
 
 	public String getDescricao() {

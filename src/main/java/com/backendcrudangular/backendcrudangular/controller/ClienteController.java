@@ -40,15 +40,16 @@ public class ClienteController {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> listarPorId(@Valid @PathVariable Long id) {
-		Optional<Cliente> usuario = clienteService.listarPorId(id);
-		return ResponseEntity.ok(usuario.get());
+		Optional<Cliente> cliente = clienteService.listarPorId(id);
+		return cliente.isPresent() ? ResponseEntity.ok(cliente.get()) : ResponseEntity.notFound().build();
 	}
 
 	@CrossOrigin(origins = "*")
 	@PostMapping
-	public Cliente salvar(@Valid @RequestBody Cliente cliente) {
+	public ResponseEntity<Cliente> salvar(@Valid @RequestBody Cliente cliente) {
 
-		return clienteService.salvar(cliente);
+		Cliente clienteSalvo = clienteService.salvar(cliente);
+		return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
 	}
 
 	@CrossOrigin(origins = "*")

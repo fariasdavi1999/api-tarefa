@@ -1,0 +1,2 @@
+ALTER TABLE tarefa 
+	ALTER COLUMN name TYPE NOT NULL;
