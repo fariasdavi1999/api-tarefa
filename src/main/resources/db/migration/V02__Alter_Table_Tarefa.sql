@@ -1,2 +1,1 @@
-ALTER TABLE tarefa 
-	ALTER COLUMN name TYPE NOT NULL;
+ALTER TABLE public.tarefa ALTER COLUMN nome_tarefa SET NOT NULL;
