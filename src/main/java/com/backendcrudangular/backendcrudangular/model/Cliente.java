@@ -54,6 +54,14 @@ public class Cliente {
 		this.dataNasc = dataNasc;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -71,12 +79,5 @@ public class Cliente {
 		return Objects.equals(id, other.id);
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 }

@@ -25,7 +25,7 @@ public class Tarefa {
 
 	@Column(name = "nome_tarefa", nullable = false)
 	private String nomeTarefa;
-	
+
 	@Column(name = "tarefa_descricao", nullable = false)
 	private String descricao;
 

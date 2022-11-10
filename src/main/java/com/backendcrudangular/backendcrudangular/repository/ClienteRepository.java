@@ -7,5 +7,7 @@ import com.backendcrudangular.backendcrudangular.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+	
+//	filtro achar por cpf 
 
 }
