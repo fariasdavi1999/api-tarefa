@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -59,6 +60,13 @@ public class Tarefa {
 		this.cliente = cliente;
 	}
 
+	@PostPersist
+	public void depoisDeFeito() {
+		
+		
+		
+	}
+	
 	// setar a data de cadastro da tarefa para cadastrar data automático
 	@PrePersist
 	public void beforeSave() {

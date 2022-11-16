@@ -66,12 +66,18 @@ public class TarefaController {
 		}
 
 		tarefaSalva.get().setNomeTarefa(tarefa.getNomeTarefa());
+		tarefaSalva.get().setDescricao(tarefa.getDescricao());
+		tarefaSalva.get().setFeito(tarefa.getFeito());
+		tarefaSalva.get().setDataConclusao(tarefa.getDataConclusao());
+		tarefaSalva.get().setCliente(tarefa.getCliente());
+
 		Tarefa tarefaEditar = tarefaService.salvar(tarefaSalva.get());
 
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(tarefaEditar);
 
 	}
 	
+
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

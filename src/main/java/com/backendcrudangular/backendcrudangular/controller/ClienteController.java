@@ -70,6 +70,7 @@ public class ClienteController {
 		}
 
 		clienteSalvo.get().setNomeCliente(cliente.getNomeCliente());
+
 		Cliente clienteEditar = clienteService.salvar(clienteSalvo.get());
 
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(clienteEditar);
