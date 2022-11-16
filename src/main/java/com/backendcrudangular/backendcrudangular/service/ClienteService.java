@@ -26,6 +26,10 @@ public class ClienteService {
 		return clienteRepository.findById(id);
 
 	}
+	
+	public Optional<Cliente> findByCpfCliente(String cpfCliente){
+		return clienteRepository.findByCpfCliente(cpfCliente);
+	}
 
 	public Cliente salvar(Cliente cliente) {
 

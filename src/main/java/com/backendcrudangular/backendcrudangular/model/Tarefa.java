@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -44,7 +46,20 @@ public class Tarefa {
 	@Column(name = "dt_conclusao")
 	private LocalDateTime dataConclusao;
 
-//	setar a data de cadastro da tarefa para cadastrar data automático
+//	varias tarefas para um cliente
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	// setar a data de cadastro da tarefa para cadastrar data automático
 	@PrePersist
 	public void beforeSave() {
 		setDataCadastro(LocalDateTime.now());

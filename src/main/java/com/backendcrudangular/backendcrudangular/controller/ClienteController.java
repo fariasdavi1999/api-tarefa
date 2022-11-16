@@ -45,6 +45,13 @@ public class ClienteController {
 	}
 
 	@CrossOrigin(origins = "*")
+	@GetMapping("/cpf/{cpfCliente}")
+	public ResponseEntity<Cliente> findByCpfCliente(@Valid @PathVariable String cpfCliente) {
+		Optional<Cliente> cliente = clienteService.findByCpfCliente(cpfCliente);
+		return cliente.isPresent() ? ResponseEntity.ok(cliente.get()) : ResponseEntity.notFound().build();
+	}
+
+	@CrossOrigin(origins = "*")
 	@PostMapping
 	public ResponseEntity<Cliente> salvar(@Valid @RequestBody Cliente cliente) {
 

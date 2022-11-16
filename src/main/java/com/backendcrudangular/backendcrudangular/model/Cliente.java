@@ -79,5 +79,4 @@ public class Cliente {
 		return Objects.equals(id, other.id);
 	}
 
-
 }
