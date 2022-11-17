@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -60,17 +60,19 @@ public class Tarefa {
 		this.cliente = cliente;
 	}
 
-	@PostPersist
-	public void depoisDeFeito() {
-		
-		
-		
-	}
-	
-	// setar a data de cadastro da tarefa para cadastrar data automático
+	// setar a data de cadastro da tarefa para cadastrar data automático assim que
+	// for salvo
 	@PrePersist
 	public void beforeSave() {
 		setDataCadastro(LocalDateTime.now());
+	}
+
+	// setar a data de conclusao da tarefa quando getFeito for true
+	@PreUpdate
+	public void depoisDeFeito() {
+		if (getFeito() == true) {
+			setDataConclusao(LocalDateTime.now());
+		}
 	}
 
 	public Long getId() {

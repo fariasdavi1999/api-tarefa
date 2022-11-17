@@ -77,18 +77,6 @@ public class ClienteController {
 
 	}
 
-//	public ResponseEntity<Usuario> alterar(@PathVariable Integer id, @Valid @RequestBody Usuario usuario) {
-//
-//		Optional<Usuario> usuarioSalvo = usuarioService.getById(id);
-//
-//		if (!usuarioSalvo.isPresent()) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		usuarioSalvo.get().setNome(usuario.getNome());
-//		Usuario usuarioEditar = usuarioService.PersistirUsuario(usuarioSalvo.get());
-//		return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioEditar);
-//	}
-
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
