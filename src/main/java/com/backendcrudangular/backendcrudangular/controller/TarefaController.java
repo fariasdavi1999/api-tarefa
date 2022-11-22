@@ -36,6 +36,15 @@ public class TarefaController {
 		return tarefaService.listarTarefas();
 
 	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/feito/{feito}")
+	public List<Tarefa> findByFeito(@Valid @PathVariable Boolean feito) {
+
+		return tarefaService.findByFeito(feito);
+
+	}
+	
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")

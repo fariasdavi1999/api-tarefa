@@ -23,6 +23,11 @@ public class TarefaService {
 
 	}
 
+	public List<Tarefa> findByFeito(Boolean feito){
+		return tarefaRepository.findByFeito(feito);
+	}
+	
+	
 	public Optional<Tarefa> listarPorId(Long id) {
 
 		return Optional.ofNullable(tarefaRepository

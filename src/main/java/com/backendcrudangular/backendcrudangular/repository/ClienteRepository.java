@@ -13,5 +13,4 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 //	filtro achar por cpf 
 	Optional<Cliente> findByCpfCliente(String cpfCliente);
 	
-
 }

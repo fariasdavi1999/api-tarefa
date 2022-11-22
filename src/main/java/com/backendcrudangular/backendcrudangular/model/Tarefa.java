@@ -72,6 +72,8 @@ public class Tarefa {
 	public void depoisDeFeito() {
 		if (getFeito() == true) {
 			setDataConclusao(LocalDateTime.now());
+		} else {
+			setDataConclusao(null);
 		}
 	}
 
