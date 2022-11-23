@@ -36,7 +36,7 @@ public class TarefaController {
 		return tarefaService.listarTarefas();
 
 	}
-	
+
 	@CrossOrigin(origins = "*")
 	@GetMapping("/feito/{feito}")
 	public List<Tarefa> findByFeito(@Valid @PathVariable Boolean feito) {
@@ -44,7 +44,6 @@ public class TarefaController {
 		return tarefaService.findByFeito(feito);
 
 	}
-	
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
@@ -85,7 +84,6 @@ public class TarefaController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(tarefaEditar);
 
 	}
-	
 
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")

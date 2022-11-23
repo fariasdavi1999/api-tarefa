@@ -32,7 +32,7 @@ public class Tarefa {
 	@Column(name = "tarefa_descricao", nullable = false)
 	private String descricao;
 
-	@Column(name = "tarefa_feito")
+	@Column(name = "tarefa_feito", nullable = false)
 	private Boolean feito;
 
 //	data de cadastro da tarefa
