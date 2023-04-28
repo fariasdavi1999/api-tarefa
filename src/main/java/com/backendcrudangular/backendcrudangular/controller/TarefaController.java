@@ -78,6 +78,7 @@ public class TarefaController {
 		tarefaSalva.get().setFeito(tarefa.getFeito());
 		tarefaSalva.get().setDataConclusao(tarefa.getDataConclusao());
 		tarefaSalva.get().setCliente(tarefa.getCliente());
+		
 
 		Tarefa tarefaEditar = tarefaService.salvar(tarefaSalva.get());
 

@@ -48,8 +48,8 @@ public class CorsConfig extends CorsFilter {
 						
 					} else {
 
-					cors.allowedOrigins("https://primeiro-frontend-angular.vercel.app"); //prodFake
-//					cors.allowedOrigins("http://localhost:4200");
+//					cors.allowedOrigins("https://primeiro-frontend-angular.vercel.app"); //prodFake
+					cors.allowedOrigins("http://localhost:4200");
 
 					}
 					cors.allowedHeaders("*");
@@ -63,8 +63,8 @@ public class CorsConfig extends CorsFilter {
 			CorsConfiguration config = new CorsConfiguration();
 			config.setAllowCredentials(true);
 
-			config.addAllowedOrigin("https://primeiro-frontend-angular.vercel.app"); //prodFake
-//			config.addAllowedOrigin("http://localhost:4200"); // local
+//			config.addAllowedOrigin("https://primeiro-frontend-angular.vercel.app"); //prodFake
+			config.addAllowedOrigin("http://localhost:4200"); // local
 
 
 			config.addAllowedHeader("*");
