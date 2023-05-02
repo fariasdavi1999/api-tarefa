@@ -48,8 +48,8 @@ public class CorsConfig extends CorsFilter {
 						
 					} else {
 
-//					cors.allowedOrigins("https://primeiro-frontend-angular.vercel.app"); //prodFake
-					cors.allowedOrigins("http://localhost:4200");
+					cors.allowedOrigins("https://primeiro-frontend-angular.vercel.app"); //prodFake
+//					cors.allowedOrigins("http://localhost:4200");
 
 					}
 					cors.allowedHeaders("*");
