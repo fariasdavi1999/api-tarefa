@@ -23,16 +23,14 @@ public class TarefaService {
 
 	}
 
-	public List<Tarefa> findByFeito(Boolean feito){
+	public List<Tarefa> findByFeito(Boolean feito) {
 		return tarefaRepository.findByFeito(feito);
 	}
-	
-	
+
 	public Optional<Tarefa> listarPorId(Long id) {
 
-		return Optional.ofNullable(tarefaRepository
-				.findById(id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+		return Optional.ofNullable(
+				tarefaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
 
 	}
 

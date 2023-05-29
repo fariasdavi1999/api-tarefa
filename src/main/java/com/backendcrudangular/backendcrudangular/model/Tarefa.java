@@ -37,7 +37,7 @@ public class Tarefa {
 	@Column(name = "tarefa_descricao", nullable = false)
 	private String descricao;
 
-	@Column(name = "tarefa_feito", nullable = false )
+	@Column(name = "tarefa_feito", nullable = false)
 	private Boolean feito;
 
 //	data de cadastro da tarefa
@@ -73,7 +73,5 @@ public class Tarefa {
 			setDataConclusao(null);
 		}
 	}
-
-
 
 }
