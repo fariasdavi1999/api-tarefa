@@ -37,5 +37,6 @@ public class Cliente {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data_nasc")
 	private Date dataNasc;
+	
 
 }
