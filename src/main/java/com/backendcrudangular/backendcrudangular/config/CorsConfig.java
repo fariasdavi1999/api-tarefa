@@ -35,8 +35,8 @@ public class CorsConfig extends CorsFilter {
 			super(configurationSource());
 		}
 
-		@Bean
-		public WebMvcConfigurer corsConfigurer() {
+    @Bean
+    WebMvcConfigurer corsConfigurer() {
 			return new WebMvcConfigurer() {
 				@Override
 				public void addCorsMappings(CorsRegistry registry) {
