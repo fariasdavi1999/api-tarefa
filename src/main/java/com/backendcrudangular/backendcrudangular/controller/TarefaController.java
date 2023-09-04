@@ -1,26 +1,15 @@
 package com.backendcrudangular.backendcrudangular.controller;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
-
+import com.backendcrudangular.backendcrudangular.model.Tarefa;
+import com.backendcrudangular.backendcrudangular.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.backendcrudangular.backendcrudangular.model.Tarefa;
-import com.backendcrudangular.backendcrudangular.service.TarefaService;
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tarefas")
@@ -29,7 +18,7 @@ public class TarefaController {
 	@Autowired
 	private TarefaService tarefaService;
 
-	@CrossOrigin(origins = "*")
+	
 	@GetMapping("/listar-tarefas")
 	public List<Tarefa> listarTarefas() {
 
@@ -37,7 +26,7 @@ public class TarefaController {
 
 	}
 
-	@CrossOrigin(origins = "*")
+	
 	@GetMapping("/feito/{feito}")
 	public List<Tarefa> findByFeito(@Valid @PathVariable Boolean feito) {
 
@@ -45,7 +34,7 @@ public class TarefaController {
 
 	}
 
-	@CrossOrigin(origins = "*")
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Tarefa> listarPorId(@Valid @PathVariable Long id) {
 
@@ -54,7 +43,7 @@ public class TarefaController {
 
 	}
 
-	@CrossOrigin(origins = "*")
+	
 	@PostMapping
 	public ResponseEntity<Tarefa> salvar(@Valid @RequestBody Tarefa tarefa) {
 
@@ -63,7 +52,7 @@ public class TarefaController {
 
 	}
 
-	@CrossOrigin(origins = "*")
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<Tarefa> alterar(@PathVariable Long id, @Valid @RequestBody Tarefa tarefa) {
 
@@ -86,7 +75,7 @@ public class TarefaController {
 
 	}
 
-	@CrossOrigin(origins = "*")
+	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
