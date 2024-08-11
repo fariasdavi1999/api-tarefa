@@ -1,7 +1,7 @@
-package com.backendcrudangular.backendcrudangular.controller;
+package edu.davi.api.tarefa.controller;
 
-import com.backendcrudangular.backendcrudangular.model.Cliente;
-import com.backendcrudangular.backendcrudangular.service.ClienteService;
+import edu.davi.api.tarefa.model.Cliente;
+import edu.davi.api.tarefa.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

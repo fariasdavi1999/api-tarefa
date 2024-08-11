@@ -1,4 +1,4 @@
-package com.backendcrudangular.backendcrudangular.service;
+package edu.davi.api.tarefa.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.backendcrudangular.backendcrudangular.model.Tarefa;
-import com.backendcrudangular.backendcrudangular.repository.TarefaRepository;
+import edu.davi.api.tarefa.model.Tarefa;
+import edu.davi.api.tarefa.repository.TarefaRepository;
 
 @Service
 public class TarefaService {

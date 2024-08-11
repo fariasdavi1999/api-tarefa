@@ -1,10 +1,10 @@
-package com.backendcrudangular.backendcrudangular;
+package edu.davi.api.tarefa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendCrudAngularApplicationTests {
+class TarefaApplicationTests {
 
 	@Test
 	void contextLoads() {

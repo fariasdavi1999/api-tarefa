@@ -1,4 +1,4 @@
-package com.backendcrudangular.backendcrudangular.model;
+package edu.davi.api.tarefa.model;
 
 import java.time.LocalDateTime;
 

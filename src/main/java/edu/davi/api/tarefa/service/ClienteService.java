@@ -1,4 +1,4 @@
-package com.backendcrudangular.backendcrudangular.service;
+package edu.davi.api.tarefa.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backendcrudangular.backendcrudangular.model.Cliente;
-import com.backendcrudangular.backendcrudangular.repository.ClienteRepository;
+import edu.davi.api.tarefa.model.Cliente;
+import edu.davi.api.tarefa.repository.ClienteRepository;
 
 @Service
 public class ClienteService {

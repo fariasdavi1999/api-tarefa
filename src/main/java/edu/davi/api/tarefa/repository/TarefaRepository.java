@@ -1,10 +1,10 @@
-package com.backendcrudangular.backendcrudangular.repository;
+package edu.davi.api.tarefa.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.backendcrudangular.backendcrudangular.model.Tarefa;
+import edu.davi.api.tarefa.model.Tarefa;
 
 public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 
