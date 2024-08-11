@@ -66,8 +66,8 @@ public class Tarefa {
 
 	// setar a data de conclusao da tarefa quando getFeito for true
 	@PreUpdate
-	public void depoisDeFeito() {
-		if (getFeito() == true) {
+	public void afterDone() {
+		if (getFeito()) {
 			setDataConclusao(LocalDateTime.now());
 		} else {
 			setDataConclusao(null);
