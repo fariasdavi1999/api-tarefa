@@ -12,8 +12,12 @@ import edu.davi.api.tarefa.repository.FuncionarioRepository;
 @Service
 public class FuncionarioService {
 
+	private final FuncionarioRepository funcionarioRepository;
+
 	@Autowired
-	private FuncionarioRepository funcionarioRepository;
+	public FuncionarioService(FuncionarioRepository funcionarioRepository) {
+		this.funcionarioRepository = funcionarioRepository;
+	}
 
 	public List<Funcionario> listarTodos() {
 
