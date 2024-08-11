@@ -14,8 +14,11 @@ import edu.davi.api.tarefa.repository.TarefaRepository;
 @Service
 public class TarefaService {
 
-	@Autowired
-	private TarefaRepository tarefaRepository;
+	private final TarefaRepository tarefaRepository;
+
+	public TarefaService(TarefaRepository tarefaRepository) {
+		this.tarefaRepository = tarefaRepository;
+	}
 
 	public List<Tarefa> listarTarefas() {
 
