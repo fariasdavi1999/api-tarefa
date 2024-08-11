@@ -1,0 +1,3 @@
+ALTER TABLE funcionario ADD COLUMN senha VARCHAR(255) NULL;
+UPDATE funcionario SET senha = '123456' WHERE funcionario.id = 3;
+UPDATE funcionario SET senha = '123' WHERE funcionario.id = 1;
