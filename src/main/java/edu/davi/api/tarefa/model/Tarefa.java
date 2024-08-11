@@ -52,10 +52,10 @@ public class Tarefa {
 	@Column(name = "dt_conclusao")
 	private LocalDateTime dataConclusao;
 
-//	varias tarefas para um cliente
+//	varias tarefas para um funcionario
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	private Cliente cliente;
+	@JoinColumn(name = "funcionario_id")
+	private Funcionario funcionario;
 
 	// setar a data de cadastro da tarefa para cadastrar data automático assim que
 	// for salvo

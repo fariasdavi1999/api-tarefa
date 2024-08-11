@@ -19,19 +19,19 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "cliente")
-public class Cliente {
+@Table(name = "funcionario")
+public class Funcionario {
 
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "nome_cliente")
-	private String nomeCliente;
+	@Column(name = "nome_funcionario")
+	private String nomeFuncionario;
 
-	@Column(name = "cpf_cliente", nullable = false)
-	private String cpfCliente;
+	@Column(name = "cpf_funcionario", nullable = false)
+	private String cpfFuncionario;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
