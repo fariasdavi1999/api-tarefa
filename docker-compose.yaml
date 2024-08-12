@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    container_name: api-tarefa
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: tarefadb
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U root -d tarefadb" ]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+networks:
+  default:
+    name: tarefa-api-default
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.4.0/25
+
+volumes:
+  postgres:
