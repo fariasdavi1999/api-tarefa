@@ -1,11 +1,13 @@
 package edu.davi.api.tarefa.exception.detail;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 public record ExceptionDetail(
+		String title,
 		LocalDateTime timestamp,
-		String status,
 		int statusCode,
-		String message
+		String message,
+		Map<String, String> details
 ) {
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -17,10 +18,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		return ResponseEntity
 				.status(HttpStatus.CONFLICT)
 				.body(new ExceptionDetail(
+						"Bad Request! Consult the documentation",
 						LocalDateTime.now(),
-						ex.getMessage(),
-						HttpStatus.CONFLICT.value(),
-						ex.getClass().getName()
+						HttpStatus.BAD_REQUEST.value(),
+						ex.getClass().toString(),
+						Map.of("Cause", ex.getMessage())
 				));
 
 	}
