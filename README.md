@@ -22,7 +22,8 @@ sempre em aprendizado e atualizações.
 ![SonarLint](https://img.shields.io/badge/SonarLint-CB2029?style=for-the-badge&logo=sonarlint&logoColor=white)
 
 ### Tecnologias
-Documentação com swagger
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
+Obs:Utilizando Spring Doc, Open API Documentation
 
 [//]: # (![Spring Security]&#40;    https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white&#41;)
 
