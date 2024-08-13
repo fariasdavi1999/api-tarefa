@@ -1,20 +1,12 @@
 package edu.davi.api.tarefa.model;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -24,7 +16,7 @@ public class Funcionario {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(name = "nome_funcionario")
@@ -33,10 +25,13 @@ public class Funcionario {
 	@Column(name = "cpf_funcionario", nullable = false)
 	private String cpfFuncionario;
 
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Schema(description = "Data de Nascimento", example = "1999-05-04")
 	@Column(name = "data_nasc")
-	private Date dataNasc;
-	
+	private LocalDate dataNasc;
+
+	//um funcionario para varias tarefas
+	@OneToMany(targetEntity = Tarefa.class)
+	@JoinColumn(name = "tarefa_id")
+	private Set<Tarefa> tarefas;
 
 }
