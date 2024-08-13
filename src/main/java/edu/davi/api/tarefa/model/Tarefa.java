@@ -1,24 +1,10 @@
 package edu.davi.api.tarefa.model;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -28,7 +14,7 @@ public class Tarefa {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(name = "nome_tarefa", nullable = false)
@@ -41,21 +27,17 @@ public class Tarefa {
 	private Boolean feito;
 
 //	data de cadastro da tarefa
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
 
 //	data de finalizacao da tarefa
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "dt_conclusao")
 	private LocalDateTime dataConclusao;
 
 //	varias tarefas para um funcionario
-	@ManyToOne
-	@JoinColumn(name = "funcionario_id")
-	private Funcionario funcionario;
+//	@ManyToOne
+//	@JoinColumn(name = "funcionario_id")
+//	private Funcionario funcionario;
 
 	// setar a data de cadastro da tarefa para cadastrar data automático assim que
 	// for salvo
