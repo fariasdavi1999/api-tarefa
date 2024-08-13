@@ -1,5 +1,6 @@
 package edu.davi.api.tarefa.exception.handler;
 
+
 import edu.davi.api.tarefa.exception.BusinessException;
 import edu.davi.api.tarefa.exception.detail.ExceptionDetail;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(BusinessException.class)
-	public ResponseEntity<ExceptionDetail> businessException(BusinessException ex) {
+	public ResponseEntity<ExceptionDetail> handleBusinessException(BusinessException ex) {
 		return ResponseEntity
 				.status(HttpStatus.CONFLICT)
 				.body(new ExceptionDetail(
