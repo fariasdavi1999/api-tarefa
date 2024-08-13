@@ -33,7 +33,8 @@ public class TarefaService {
 	public Optional<Tarefa> listarPorId(Long id) {
 
 		return Optional.ofNullable(
-				tarefaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+				tarefaRepository.findById(id)
+				                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
 
 	}
 
