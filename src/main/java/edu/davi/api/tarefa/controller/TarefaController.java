@@ -10,77 +10,61 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/tarefas")
 public class TarefaController {
 
-	@Autowired
-	private TarefaService tarefaService;
+	private final TarefaService tarefaService;
 
-	
+	@Autowired
+	public TarefaController(TarefaService tarefaService) {
+		this.tarefaService = tarefaService;
+	}
+
 	@GetMapping("/listar-tarefas")
 	public List<Tarefa> listarTarefas() {
 
 		return tarefaService.listarTarefas();
-
 	}
 
-	
+
 	@GetMapping("/feito/{feito}")
-	public List<Tarefa> findByFeito(@Valid @PathVariable Boolean feito) {
+	public Set<Tarefa> findByFeito(@Valid @PathVariable Boolean feito) {
 
 		return tarefaService.findByFeito(feito);
-
 	}
 
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Tarefa> listarPorId(@Valid @PathVariable Long id) {
 
 		Optional<Tarefa> tarefa = tarefaService.listarPorId(id);
-		return tarefa.isPresent() ? ResponseEntity.ok(tarefa.get()) : ResponseEntity.notFound().build();
-
+		return tarefa.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
-	
+
 	@PostMapping
 	public ResponseEntity<Tarefa> salvar(@Valid @RequestBody Tarefa tarefa) {
-
+		// TODO não usar tarefa pura, trocar por tarefaDTO
 		Tarefa tarefaSalva = tarefaService.salvar(tarefa);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaSalva);
-
 	}
 
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Tarefa> alterar(@PathVariable Long id, @Valid @RequestBody Tarefa tarefa) {
+		Tarefa tarefaEditada = tarefaService.alterar(id, tarefa);
 
-		Optional<Tarefa> tarefaSalva = tarefaService.listarPorId(id);
-
-		if (!tarefaSalva.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		tarefaSalva.get().setNomeTarefa(tarefa.getNomeTarefa());
-		tarefaSalva.get().setDescricao(tarefa.getDescricao());
-		tarefaSalva.get().setFeito(tarefa.getFeito());
-		tarefaSalva.get().setDataConclusao(tarefa.getDataConclusao());
-//		tarefaSalva.get().setFuncionario(tarefa.getFuncionario());
-		
-
-		Tarefa tarefaEditar = tarefaService.salvar(tarefaSalva.get());
-
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(tarefaEditar);
-
+		return new ResponseEntity<>(tarefaEditada, HttpStatus.ACCEPTED);
 	}
 
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		tarefaService.deletar(id);
-
 	}
 
 }

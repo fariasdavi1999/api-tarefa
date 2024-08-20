@@ -1,15 +1,15 @@
 package edu.davi.api.tarefa.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import edu.davi.api.tarefa.model.Tarefa;
+import edu.davi.api.tarefa.repository.TarefaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import edu.davi.api.tarefa.model.Tarefa;
-import edu.davi.api.tarefa.repository.TarefaRepository;
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TarefaService {
@@ -21,27 +21,34 @@ public class TarefaService {
 	}
 
 	public List<Tarefa> listarTarefas() {
-
-		return tarefaRepository.findAll();
-
+		List<Tarefa> result;
+		result = tarefaRepository.findAll();
+		if (result.isEmpty())
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+		return result;
 	}
 
-	public List<Tarefa> findByFeito(Boolean feito) {
-		return tarefaRepository.findByFeito(feito);
+	public Set<Tarefa> findByFeito(Boolean feito) {
+		Set<Tarefa> result;
+		result = tarefaRepository.findByFeito(feito);
+		if (result.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+		}
+		return result;
 	}
 
 	public Optional<Tarefa> listarPorId(Long id) {
-
-		return Optional.ofNullable(
-				tarefaRepository.findById(id)
-				                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
-
+		Optional<Tarefa> result;
+		result = tarefaRepository.findById(id);
+		if (result.isPresent()) {
+			return result;
+		}
+		throw new EntityNotFoundException("Not found");
 	}
 
 	public Tarefa salvar(Tarefa tarefa) {
 
 		return tarefaRepository.save(tarefa);
-
 	}
 
 	public void deletar(Long id) {
@@ -50,9 +57,18 @@ public class TarefaService {
 
 	public Tarefa alterar(Long id, Tarefa tarefa) {
 
-		tarefa.setId(id);
-		return tarefaRepository.save(tarefa);
+		Optional<Tarefa> tarefaSalva = tarefaRepository.findById(id);
 
+		if (tarefaSalva.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+
+		tarefaSalva.get().setNomeTarefa(tarefa.getNomeTarefa());
+		tarefaSalva.get().setDescricao(tarefa.getDescricao());
+		tarefaSalva.get().setFeito(tarefa.getFeito());
+		tarefaSalva.get().setDataConclusao(tarefa.getDataConclusao());
+
+		return tarefaRepository.save(tarefa);
 	}
 
 }
