@@ -1,5 +1,6 @@
 package edu.davi.api.tarefa.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,30 +15,28 @@ public class Tarefa {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "nome_tarefa", nullable = false)
 	private String nomeTarefa;
 
-	@Column(name = "tarefa_descricao", nullable = false)
+	@Column(name = "tarefa_descricao", nullable = false, columnDefinition = "TEXT")
 	private String descricao;
 
 	@Column(name = "tarefa_feito", nullable = false)
 	private Boolean feito;
 
-//	data de cadastro da tarefa
+	//	data de cadastro da tarefa
+	@Schema(description = "Data de cadastro", example = "1999-05-04")
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
 
-//	data de finalizacao da tarefa
+	//	data de finalizacao da tarefa
+	@Schema(description = "Data de conclusão", example = "1999-05-04")
 	@Column(name = "dt_conclusao")
 	private LocalDateTime dataConclusao;
 
-//	varias tarefas para um funcionario
-//	@ManyToOne
-//	@JoinColumn(name = "funcionario_id")
-//	private Funcionario funcionario;
 
 	// setar a data de cadastro da tarefa para cadastrar data automático assim que
 	// for salvo
