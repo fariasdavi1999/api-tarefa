@@ -48,10 +48,10 @@ public class FuncionarioService {
 	}
 
 	public Funcionario salvar(Funcionario funcionario) {
-		if (findByCpfFuncionario(funcionario.getCpfFuncionario()).isPresent()) {
-			throw new BusinessException("CPF já cadastrado");
-		} else if (funcionario.getCpfFuncionario().isEmpty())
+		if (funcionario.getCpfFuncionario().isEmpty())
 			throw new BusinessException("CPF é obrigatório");
+		else if (funcionario.getCpfFuncionario().length() < 11)
+			throw new BusinessException("CPF inválido");
 		return funcionarioRepository.save(funcionario);
 	}
 
@@ -67,8 +67,12 @@ public class FuncionarioService {
 
 		if (funcionarioParaEditar.isPresent()) {
 			funcionarioParaEditar.get().setNomeFuncionario(funcionario.getNomeFuncionario());
+			if (funcionario.getCpfFuncionario().length() < 11) {
+				throw new BusinessException("CPF inválido para: " + funcionario.getNomeFuncionario());
+			}
 			funcionarioParaEditar.get().setCpfFuncionario(funcionario.getCpfFuncionario());
 			funcionarioParaEditar.get().setDataNasc(funcionario.getDataNasc());
+			funcionarioParaEditar.get().setTarefas(funcionario.getTarefas());
 			return funcionarioRepository.save(funcionarioParaEditar.get());
 		}
 		throw new BusinessException("Falha ao editar funcionario");
