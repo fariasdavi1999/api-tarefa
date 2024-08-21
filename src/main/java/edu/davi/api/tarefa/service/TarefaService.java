@@ -60,9 +60,8 @@ public class TarefaService {
 		Optional<Tarefa> tarefaSalva = tarefaRepository.findById(id);
 
 		if (tarefaSalva.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			throw new EntityNotFoundException("Not found");
 		}
-
 		tarefaSalva.get().setNomeTarefa(tarefa.getNomeTarefa());
 		tarefaSalva.get().setDescricao(tarefa.getDescricao());
 		tarefaSalva.get().setFeito(tarefa.getFeito());
