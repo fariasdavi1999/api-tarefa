@@ -16,13 +16,13 @@ public class Funcionario {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "nome_funcionario", nullable = false)
 	private String nomeFuncionario;
 
-	@Schema(description = "CPF do funcionário", example = "12345678900")
+	@Schema(description = "CPF do funcionário", example = "12345678900", minLength = 11)
 	@Column(name = "cpf_funcionario", nullable = false, unique = true, length = 11)
 	private String cpfFuncionario;
 
