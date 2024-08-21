@@ -19,14 +19,15 @@ public class Funcionario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "nome_funcionario")
+	@Column(name = "nome_funcionario", nullable = false)
 	private String nomeFuncionario;
 
-	@Column(name = "cpf_funcionario", nullable = false)
+	@Schema(description = "CPF do funcionário", example = "12345678900")
+	@Column(name = "cpf_funcionario", nullable = false, unique = true, length = 11)
 	private String cpfFuncionario;
 
 	@Schema(description = "Data de Nascimento", example = "1999-05-04")
-	@Column(name = "data_nasc")
+	@Column(name = "data_nasc", nullable = false)
 	private LocalDate dataNasc;
 
 	//um funcionario para varias tarefas
