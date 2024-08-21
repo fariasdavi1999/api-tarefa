@@ -15,65 +15,54 @@ import java.util.Optional;
 @RequestMapping("/api/funcionarios")
 public class FuncionarioController {
 
-	@Autowired
-	private FuncionarioService funcionarioService;
+	private final FuncionarioService funcionarioService;
 
-	
+	@Autowired
+	public FuncionarioController(FuncionarioService funcionarioService) {
+		this.funcionarioService = funcionarioService;
+	}
+
 	@GetMapping("/listar-funcionarios")
 	public List<Funcionario> listarTodos() {
-
 		return funcionarioService.listarTodos();
-
 	}
 
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Funcionario> listarPorId(@Valid @PathVariable Long id) {
+	public ResponseEntity<Optional<Funcionario>> listarPorId(@Valid @PathVariable Long id) {
 		Optional<Funcionario> funcionario = funcionarioService.listarPorId(id);
-		return funcionario.isPresent() ? ResponseEntity.ok(funcionario.get()) : ResponseEntity.notFound().build();
+		return new ResponseEntity<>(funcionario, HttpStatus.ACCEPTED);
 	}
 
-	
-	@GetMapping("/cpf/{cpffuncionario}")
-	public ResponseEntity<Funcionario> findByCpffuncionario(@Valid @PathVariable String cpffuncionario) {
-		Optional<Funcionario> funcionario = funcionarioService.findByCpfFuncionario(cpffuncionario);
-		return funcionario.isPresent() ? ResponseEntity.ok(funcionario.get()) : ResponseEntity.notFound().build();
+
+	@GetMapping("/cpf/{cpfFuncionario}")
+	public ResponseEntity<Optional<Funcionario>> findByCpffuncionario(@Valid @PathVariable String cpfFuncionario) {
+		Optional<Funcionario> funcionario = funcionarioService.findByCpfFuncionario(cpfFuncionario);
+		return new ResponseEntity<>(funcionario, HttpStatus.ACCEPTED);
 	}
 
-	
+
 	@PostMapping
 	public ResponseEntity<Funcionario> salvar(@Valid @RequestBody Funcionario funcionario) {
 
 		Funcionario funcionarioSalvo = funcionarioService.salvar(funcionario);
-		return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioSalvo);
+
+		return new ResponseEntity<>(funcionarioSalvo, HttpStatus.CREATED);
 	}
 
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Funcionario> alterar(@PathVariable Long id, @Valid @RequestBody Funcionario funcionario) {
-
-		Optional<Funcionario> funcionarioSalvo = funcionarioService.listarPorId(id);
-
-		if (!funcionarioSalvo.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		funcionarioSalvo.get().setNomeFuncionario(funcionario.getNomeFuncionario());
-		funcionarioSalvo.get().setCpfFuncionario(funcionario.getCpfFuncionario());
-		funcionarioSalvo.get().setDataNasc(funcionario.getDataNasc());
-		
-		Funcionario funcionarioEditar = funcionarioService.salvar(funcionarioSalvo.get());
-
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(funcionarioEditar);
-
+	public ResponseEntity<Funcionario> alterar(@PathVariable Long id,
+	                                           @Valid @RequestBody Funcionario funcionario) {
+		Funcionario funcionarioEditado = funcionarioService.alterar(id, funcionario);
+		return new ResponseEntity<>(funcionarioEditado, HttpStatus.ACCEPTED);
 	}
 
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		funcionarioService.deletar(id);
-
 	}
 
 }
