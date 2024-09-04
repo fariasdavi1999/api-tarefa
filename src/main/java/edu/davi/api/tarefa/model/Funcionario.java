@@ -31,6 +31,8 @@ public class Funcionario {
 	private LocalDate dataNasc;
 
 	//um funcionario para varias tarefas
+//	 TODO tentar trocar por many to one por problemas de performance
+//	https://thorben-janssen.com/best-practices-many-one-one-many-associations-mappings/
 	@OneToMany(targetEntity = Tarefa.class)
 	@JoinColumn(name = "tarefa_id")
 	private Set<Tarefa> tarefas;

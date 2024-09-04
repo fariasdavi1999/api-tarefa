@@ -38,14 +38,17 @@ public class Tarefa {
 	private LocalDateTime dataConclusao;
 
 
-	// setar a data de cadastro da tarefa para cadastrar data automático assim que
-	// for salvo
+	/* setar a data de cadastro da tarefa para cadastrar data automático assim que
+	for salvo
+	*/
+	// TODO	verificar de colocar essa regra de negócio em uma service
 	@PrePersist
 	public void beforeSave() {
 		setDataCadastro(LocalDateTime.now());
 	}
 
 	// setar a data de conclusao da tarefa quando getFeito for true
+//TODO	verificar de colocar essa regra de negócio em uma service
 	@PreUpdate
 	public void afterDone() {
 		if (getFeito()) {
