@@ -32,10 +32,4 @@ class TarefaControllerTest {
 	void testAlterar() {
 		fail("Not yet implemented");
 	}
-
-	@Test
-	void testDeletar() {
-		fail("Not yet implemented");
-	}
-
 }
