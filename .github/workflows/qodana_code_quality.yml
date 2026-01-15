@@ -9,8 +9,12 @@ on:
   pull_request:
   push:
     branches:
-      - main
-      - feature/teste-unitario
+      - 'main'
+      - 'release/*'
+      - 'hotfix/*'
+      - 'feature/*'
+      - 'bugfix/*'
+      - 'develop'
 
 jobs:
   qodana:
