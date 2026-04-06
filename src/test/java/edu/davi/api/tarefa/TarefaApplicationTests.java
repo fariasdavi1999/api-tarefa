@@ -13,7 +13,7 @@ class TarefaApplicationTests {
 	@Test
 	void contextLoads() {
 		assertDoesNotThrow(() -> {
-			// Verifica se o contexto da aplicação carrega corretamente
+			// Verifica se o contexto da aplicaÃ§Ã£o carrega corretamente
 		});
 	}
 
